@@ -1,4 +1,4 @@
-# Hello
+# Hello 👋
 
 This is my very first attempt to create a small PICO-8 game.
 
