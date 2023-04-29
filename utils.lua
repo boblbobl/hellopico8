@@ -32,6 +32,21 @@ function map_collide(x, y, w, h, dx, dy)
   return false
 end
 
+function get_pickups(map_w, map_h, flag)
+  local pickups = {}
+
+  for i = 0, map_w-1 do
+    for j = 0, map_h-1 do
+      if fget(mget(i,j)) == flag then
+        add(pickups, {x = i*8, y = j*8})
+        mset(i,j,0)
+      end
+    end
+  end
+
+  return pickups
+end
+
 -- random int between i and j
 function rand(i, j)
   if (j) then
