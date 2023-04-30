@@ -84,10 +84,10 @@ function update_game()
     for p in all(pickups) do
       if aabb_collide(hero.x, hero.y, hero.w, hero.h, p.x, p.y, 8, 8) then
         local score = 0
-        if p.s == 24 then -- oranges
+        if p.s == 65 then -- oranges
           score=79
         end
-        if p.s == 8 then -- limes
+        if p.s == 64 then -- limes
           score=10
         end
         hero_score = hero_score + score
