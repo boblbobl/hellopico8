@@ -5,7 +5,7 @@ function showgame()
   map_w = 32
   map_h = 16
 
-  limes=get_pickups(map_w, map_h, 2)
+  pickups=get_pickups(map_w, map_h, 2)
 
   cx=0
   cy=0
@@ -81,10 +81,17 @@ function update_game()
     hero.x = hero.x + hero.dx
     hero.y = hero.y + hero.dy
 
-    for lime in all(limes) do
-      if aabb_collide(hero.x, hero.y, hero.w, hero.h, lime.x, lime.y, 8, 8) then
-        hero_score = hero_score + 1
-        del(limes, lime)
+    for p in all(pickups) do
+      if aabb_collide(hero.x, hero.y, hero.w, hero.h, p.x, p.y, 8, 8) then
+        local score = 0
+        if p.s == 24 then -- oranges
+          score=79
+        end
+        if p.s == 8 then -- limes
+          score=10
+        end
+        hero_score = hero_score + score
+        del(pickups, p)
       end
     end
 
@@ -105,8 +112,8 @@ function draw_game()
   map(0, 0, 0, 0, map_w, map_h)
   camera(cx, cy)
   spr(hero.sprite,hero.x,hero.y,1,2,hero.flipped)
-  for lime in all(limes) do
-    spr(8, lime.x, lime.y)
+  for p in all(pickups) do
+    spr(p.s, p.x, p.y)
   end
 
   print("score " .. hero_score, 10+cx, 10+cy)

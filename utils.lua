@@ -37,8 +37,9 @@ function get_pickups(map_w, map_h, flag)
 
   for i = 0, map_w-1 do
     for j = 0, map_h-1 do
-      if fget(mget(i,j)) == flag then
-        add(pickups, {x = i*8, y = j*8})
+      local tile = mget(i,j)
+      if fget(tile) == flag then
+        add(pickups, {x=i*8, y=j*8, s=tile})
         mset(i,j,0)
       end
     end
