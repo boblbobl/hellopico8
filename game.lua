@@ -110,11 +110,12 @@ end
 function draw_game()
   cls(1)
   map(0, 0, 0, 0, map_w, map_h)
-  camera(cx, cy)
   spr(hero.sprite,hero.x,hero.y,1,2,hero.flipped)
   for p in all(pickups) do
     spr(p.s, p.x, p.y)
   end
 
+  -- make sure to set camera position after sprites are drawn
+  camera(cx, cy)
   print("score " .. hero_score, 10+cx, 10+cy)
 end
